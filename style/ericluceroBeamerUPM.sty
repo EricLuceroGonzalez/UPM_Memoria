@@ -1,0 +1,477 @@
+% ================================
+%         Eric Lucero Beamer UPM
+% ================================
+% @author: Eric Lucero
+% @location: /Users/my_name/Library/Texmf/
+% @contact: ericlucerogonzalez@gmail.com
+% @revised: Oct / 2024
+%
+% Descripción: Este archivo define los estilos y configuraciones específicas para 
+%              presentaciones en LaTeX utilizando el paquete Beamer. Aquí se encuentran 
+%              los comandos personalizados, configuraciones de fuentes, colores y 
+%              otras macros diseñadas para ser reutilizables.
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ericluceroBeamerUPM}[October_2024]
+% ================================
+%      1. PAQUETES UTILIZADOS
+% ================================
+\usepackage{EricLuceroCommands}
+%%!  === === === === === ===
+% Codificación y Lenguaje
+\usepackage[utf8]{inputenc}  % Codificación de caracteres en UTF-8, necesario para el uso de caracteres especiales como acentos.
+\usepackage[spanish,es-nodecimaldot]{babel}  % Configuración del idioma en español, es-nodecimaldot evita el punto decimal en números (usa coma).
+\usepackage[T1]{fontenc}
+
+% ==========================================
+% PAQUETES DE NOTACIONES CIENTIFICAS
+% ==========================================
+\usepackage{amsmath}  % Extiende las capacidades matemáticas básicas de LaTeX, permitiendo fórmulas más complejas.
+\usepackage{amssymb}   % Símbolos adicionales de matemáticas, como conjuntos (\mathbb{R}).
+\usepackage{amsthm}    % Permite definir teoremas, lemas y otras estructuras matemáticas formales.
+\usepackage{mathtools} % Proporciona herramientas adicionales para ajustar y mejorar la presentación de ecuaciones matemáticas. También corrige algunos problemas de 'amsmath' y ofrece más comandos matemáticos, como ajustar la alineación y corregir el espaciado de ecuaciones.
+
+% \usepackage{amsfonts}  % Proporciona acceso a fuentes matemáticas adicionales, como \mathbb.
+% \usepackage{fontspec}  % Permite el uso de fuentes del sistema (para XeLaTeX o LuaLaTeX).
+%%!  === === === === === ===
+% Unidades y Notación
+\usepackage{textcomp, gensymb} % 'gensymb' proporciona símbolos adicionales, como el símbolo de grados (°).
+\usepackage[version=3]{mhchem} % facilita la escritura de fórmulas químicas y ecuaciones.
+\usepackage{bm}  % Facilita el uso de letras en negrita dentro de expresiones matemáticas (\bm{}).
+\usepackage{siunitx}  % Facilita la escritura de unidades en formato SI (Sistema Internacional), con formatos claros y consistentes.
+%%!  === === === === === ===
+% Listas
+\usepackage{enumitem}  % Personaliza listas enumeradas y no enumeradas, con mayor control sobre espaciado y formato.
+\setlist[itemize]{font=\color{colorA}}
+\setlist[enumerate]{font=\grotesk\color{colorA}}
+% % if you want to create a new list from scratch
+% \newlist{myenum}{enumerate}{1}
+\usepackage{subcaption}
+% ================================
+%      ?. POR CLASIIFICAR
+% ================================
+%%!  === === === === === ===
+% \usepackage[final]{pdfpages}
+% \usepackage[perpage]{footmisc}
+\usepackage{parskip} % Esto aplica saltos de párrafo sin sangría
+\setlength{\parskip}{\baselineskip}
+\usepackage{textpos}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+% Codigo
+\usepackage{algorithm}
+\floatname{algorithm}{Algoritmo}
+\usepackage{algpseudocode}
+\usepackage{listings} % entorno para incluir y formatear código fuente dentro de documentos LaTeX. 
+\usepackage{ifthen}            % Evaluación de condiciones
+\usepackage{csquotes}  % Proporciona comandos avanzados para la gestión de citas y referencias, ideal para estilos como APA, MLA, etc.
+% \usepackage{textcomp}
+% \usepackage{etoolbox}
+% \usepackage{chngcntr}
+% \usepackage{stackengine}
+% \usepackage{tasks}
+% ================================
+%      2. DEFINICIÓN DE GRAFICAS, TABLAS Y VISUALES
+% ================================
+\usepackage{graphicx}  % Para incluir gráficos (formatos como .png, .jpg, .pdf, etc.).
+\usepackage{multicol} % permite la creación de múltiples columnas en una página.
+\usepackage{multirow} % Es útil para presentar tablas más complejas, donde algunas celdas abarcan varias filas, lo que ayuda a organizar mejor la información.
+\usepackage{tabu}  % Proporciona tablas flexibles con un formato más avanzado que las tablas tradicionales.
+\usepackage{wrapfig} % Esto ayuda a crear documentos más dinámicos visualmente, permitiendo que las imágenes fluyan junto con el texto, evitando la interrupción del flujo de lectura.
+\usepackage{fontawesome5}      % Íconos de FontAwesome
+\usepackage{array} % Este paquete mejora el entorno de tablas en LaTeX, permitiendo más opciones para la definición
+\usepackage{colortbl} % permite el uso de color en tabla
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\usepackage{bookmark}
+% \usepackage{booktabs}  % Añade reglas y comandos para hacer tablas más presentables, con líneas horizontales finas.
+% \usepackage{threeparttable}  % Permite añadir notas y leyendas a las tablas, organizadas en tres partes (tabla, notas, leyenda).
+% \usepackage[font=footnotesize,labelfont=bf]{caption}  % Modifica el estilo de las leyendas de las figuras y tablas.
+% \usepackage{epsfig}  % Para insertar imágenes EPS.
+% \usepackage{epstopdf}  % Convierte imágenes EPS a PDF para compatibilidad con pdflatex.
+\usepackage{pgfplots,pgfplotstable, pgf-pie}  % Librerías de gráficos para TikZ; genera gráficos de funciones, datos tabulados y gráficos de torta.
+\pgfplotsset{compat=1.17}  % Configura la compatibilidad de pgfplots para asegurar estabilidad.
+\usepackage{forest}  % Facilita la creación de árboles (como diagramas jerárquicos o familiares) usando TikZ.
+\usepackage{smartdiagram}  % Crea diagramas simples (como flujos de trabajo, listas de pasos, etc.).
+%%!  === === === === === === % TikZ y Diagramas
+\usepackage{tikz}  % Paquete base para crear gráficos vectoriales, diagramas, y figuras en LaTeX.
+\usetikzlibrary{arrows,shadings,angles,quotes,3d}  % Librerías extra de TikZ para diagramas mentales, árboles, y figuras geométricas.
+\usetikzlibrary{shapes,chains,mindmap,trees,backgrounds,shapes.geometric, arrows,arrows.meta, calc,plotmarks,intersections,shadows.blur,decorations.markings,patterns,decorations.pathmorphing,shapes.arrows,matrix,positioning}  % Librerías avanzadas de TikZ para crear diagramas complejos y figuras detalladas.
+\usepackage{tkz-euclide}  % Paquete para geometría euclidiana con TikZ (ideal para diagramas geométricos).
+% \usepgfplotslibrary{fillbetween}
+% \pgfdeclarelayer{background}
+% \pgfsetlayers{background,main} 
+%%!  === === === === === ===
+% Cajas y Diseño de Contenidos
+\usepackage{tcolorbox}  % Crea cajas de contenido personalizables, ideal para resaltar partes del documento.
+\tcbuselibrary{skins,breakable}  % Librerías adicionales para ajustar el estilo y el comportamiento de tcolorbox.
+
+% ================================
+%      2. DEFINICIÓN DE COLORES
+% ================================
+\usepackage{xcolor}  % Permite definir y usar colores personalizados en el documento.
+\usepackage{colortbl}  % Proporciona capacidades de coloreado para texto y tablas.
+% Definir aquí los colores utilizados a lo largo de las presentaciones
+\definecolor{mySuccess}{RGB}{0,123,255}   % Color principal para el ícono de check
+\definecolor{myError}{RGB}{255,69,0}   % Color para íconos de advertencia o error
+\definecolor{colorA}{RGB}{0, 114, 206}    % PANTONE 285   #0072CE
+\definecolor{colorB}{RGB}{135, 101, 47}   % PANTONE 873   #87652F
+\definecolor{colorC}{RGB}{169, 169, 169}  % PANTONE 877   #A9A9A9
+% COLORES SECUNDARIOS
+\definecolor{colorD}{RGB}{239, 51, 64}    % PANTONE 032   #EF3340
+\definecolor{colorE}{RGB}{0, 162, 222}    % PANTONE 2995  #00A2DE
+% COLORES TERCIARIOS
+\definecolor{colorF}{RGB}{0, 0, 0}        % PANTONE BLACK #000000
+\definecolor{GithubGreen}{RGB}{108, 198, 68} % Github Green #6cc644
+\definecolor{GithubRed}{RGB}{189, 44, 0} % Github Milano Red #bd2c00
+\definecolor{GithubPurple}{RGB}{110, 84, 148} % Github Purple #6e5494
+% ================================
+%          3. ESTILO
+% ================================
+% Este apartado define las fuentes, tamaños, y otros elementos estilísticos
+% utilizados en la presentación, así como comandos que modifican la apariencia
+% visual de las diapositivas.
+
+% Aplica color a un texto o símbolo dado
+% #1: El color que se aplicará
+% #2: El texto o símbolo al que se le aplicará el color
+\newcommand{\colorea}[2]{{\color{#1} #2 }}
+% Selecciona la fuente "Grotesk" (verifica que 'ugq' esté disponible en tu sistema LaTeX)
+\newcommand{\grotesk}{\fontfamily{ugq}\selectfont}
+% Inserta un ícono de check (paloma) en color 'colorA' con un tamaño opcional
+% #1: Tamaño del ícono (opcional, por defecto es \normalsize)
+\newcommand{\cheke}[1][\normalsize]{\colorea{mySuccess}{#1\faCheck}}
+% Inserta un ícono de advertencia (círculo con exclamación) en color 'myError' con un tamaño opcional
+% #1: Tamaño del ícono (opcional, por defecto es \normalsize)
+\newcommand{\err}[1][\normalsize]{\colorea{myError}{#1\faIcon{exclamation-circle}}}
+
+% 'altr': Este comando resalta el texto en negrita usando el color principal, y con la fuente grotesk.
+\newcommand{\emphA}[2][\normalsize]{\textbf{\colorea{colorA}{#1 \grotesk #2}}}
+\newcommand{\emphB}[2][\normalsize]{\textbf{\colorea{colorB}{#1 \grotesk #2}}}
+\newcommand{\emphC}[2][\normalsize]{\textbf{\colorea{colorC}{#1 \grotesk #2}}}
+\newcommand{\emphWhite}[2][\normalsize]{\textbf{\colorea{white}{#1 \grotesk #2}}}
+\newcommand{\boxi}[1]{\colorbox{colorA!50!white}{#1}} % Envuelve el texto en una caja de fondo amarillo claro ('myYellow!50!white'). Es útil para resaltar bloques o frases de una manera visual suave pero efectiva.
+
+
+% ================================
+%     4. CONTADORES
+% ================================
+\newcounter{explicacion}
+\newcounter{ejemplo}
+\newcounter{definitionCounter}
+\newcounter{ejercicio}
+
+\graphicspath{
+    {/Users/ericlucero/Documents/Academic/LaTeX-UPM/media/UPM_graphics/}
+    {/Users/ericlucero/Documents/Academic/LaTeX-UPM/media/}
+    {/Users/ericlucero/Documents/Academic/Python_Fun/Simulation/monty_python/Images/}
+    }
+
+% ================================
+%      METADATOS Y URL'S
+% ================================
+% %% Metadata
+\usepackage{hyperref}
+\hypersetup{
+    pdftitle={MUIA},    % title
+    pdfauthor={Eric Lucero Gonzalez},     % author
+    pdfsubject={Inteligencia Artificial},   % subject of the document
+    pdfcreator={pdftex},   % creator of the document
+    pdfproducer={Texmaker, TexLive, MacOS}, % producer of the document
+    pdfkeywords={AI, MUIA}, % list of keywords
+    linkcolor=colorD,          % color of internal links
+    citecolor=colorA,        % color of links to bibliography
+    filecolor=black,      % color of file links
+    urlcolor=colorA,           % color of external links
+    colorlinks=true       % false: boxed links; true: colocolorD links,
+}
+% 
+% ================================
+%      CITAS Y BIBLIOGRAFIA
+% ================================
+\usepackage[
+    backend=bibtex,
+    % style=authoryear,
+    % pluralothers=true,
+    % bibstyle=authoryear,
+    backref=true, 
+    maxcitenames=2,      % Limita a 2 autores en la cita, seguido de "et al." si hay más.
+    citestyle=authoryear, % Usa el estilo de citas de autor-año.
+    sorting=none,         % Evita ordenar la bibliografía (los elementos aparecen en el orden que los citaste).
+]{biblatex}
+
+\DefineBibliographyStrings{spanish}{
+    andothers = {et\addabbrvspace al\adddot}, % Personaliza la abreviación de "et al." en español.
+    and = {y},                                % Traduce "and" a "y" en las listas de autores.
+}
+\renewcommand*{\nameyeardelim}{\addcomma\space} % Coloca una coma entre el nombre del autor y el año en las citas.
+\renewcommand*{\bibpagespunct}{\addcolon\addspace}
+\renewcommand{\postnotedelim}{%
+  \iffieldpages{postnote}
+    {\addcolon\space}
+    {\addspace}}
+% \usepackage{biblatex}
+\addbibresource{theBibliography}
+
+% % \bibliography{theBibliography}
+% % % Archivo .bib que contiene bibliografia:
+% % %\usepackage[backend=bibtex,style=ieee]{biblatex}
+% % \DeclareCiteCommand{\parencite}[\mkcolorbibparens]
+% %   {\usebibmacro{prenote}}%
+% %   {\usebibmacro{citeindex}%
+% %    \usebibmacro{cite}}
+% %   {\multicitedelim}
+% %   {\usebibmacro{postnote}}
+% % \makeatletter
+% % \newrobustcmd{\mkcolorbibparens}[1]{%
+% %   \begingroup
+% %   \tiny
+% %   \color{colorA}%
+% %   \blx@blxinit
+% %   \blx@setsfcodes
+% %   \bibopenparen#1\bibcloseparen
+% %   \endgroup}
+% % \makeatother
+
+%%? ***** ***** ***** ***** ***** ***** ***** ***** 
+%%? ***** ***** ***** ***** ***** ***** ***** ***** 
+% ! THIS DOWN HERE IS HELL
+% % %%! -------------  === === === === === ===-------- -------------
+
+
+
+
+% % % >>>>>>>>>>>>>>>>>>>>>  TCOLORBOX - OWN Styles  <<<<<<<<<<<<<<<<<<<<<<<<<<
+% \newtcbox{\alerta}{
+% 	enhanced,
+% 	nobeforeafter,
+% 	tcbox raise base,
+% 	boxrule=0.4pt,
+% 	arc=1pt,
+% 	boxsep=1pt,
+% 	before upper={\vphantom{dlg}},
+%   colframe=colorC,
+%   fontupper=\fontfamily{ugq}\selectfont \bfseries,
+% 	coltext=colorA,
+% 	colback=colorC!20!white,
+% 	overlay={
+% 	  \begin{tcbclipinterior}
+% 	  \fill[colorC] (frame.south west) rectangle node[text=white,
+% 	  font=\bfseries\Huge] {!} ([xshift=4mm]frame.north west);
+% 	  \end{tcbclipinterior}
+% 	}
+% }
+
+% \newcounter{testPart}
+%   \newtcolorbox[use counter=testPart]{tPart}[2][]{
+%     frame code={}
+%     center title,
+%     left=0pt,
+%     right=0pt,
+%     top=0pt,
+%     bottom=0pt,
+%     % width=\dimexpr\textwidth\relax,
+%     enlarge left by=0mm,
+%     boxsep=5pt,
+%     arc=0pt,outer arc=0pt,    
+%     colframe=colorA,
+%     colback=colorA!10!white,
+%     coltitle=myDarkPurple,
+%     title={{\fontfamily{ugq}\selectfont \thetcbcounter) #2}},
+%     % detach title,before upper={\tcbtitle\quad},
+%     attach title to upper={ }
+%   }
+
+% \newtcolorbox{instrucciones}[2][]{
+% 	colframe=colorC,
+% 	colback=colorD!25!white,
+% 	coltitle=white,
+% 	title={#2},
+% 	fonttitle=\bfseries,#1
+%   }
+
+%   \newtcolorbox{alink}{
+%     colframe=black,
+%     colbacktitle=colorA,
+%     colback=myYellow!30!white,
+%     coltitle=white,
+%     title={\grotesk \colorea{white}{\faAt} Link},
+%     sharp corners,
+%     tile,flip title={sharp corners},
+%     % detach title,
+%     % before upper={\tcbtitle \newline},
+%     % fonttitle=\grotesk \colorea{colorD}{\faYoutube} Video,
+%     }
+
+% \newtcolorbox{mybox1}[2][]{
+%   toptitle=1mm,
+%   boxsep=0.5mm,
+%   colbacktitle=colorC,
+%   coltitle=colorA,
+%   colback=colorC!5,
+%   colframe=colorC,
+%   coltext=colorC,
+% title={\fontfamily{ugq}\selectfont #2},fonttitle=\bfseries, #1}
+
+% \newtcolorbox{mybox2}[2][]{
+%   toptitle=0.6mm,
+%   boxsep=1mm,
+%   colbacktitle=colorA,
+%   coltitle=white,
+%   colback=colorA!4,
+%   coltext=colorA,
+%   colframe=colorA,
+% title={\fontfamily{ugq}\selectfont #2},fonttitle=\bfseries, #1}
+
+
+
+% \newtcolorbox[use counter=theocounter]{teorema}[1][]{
+%   toptitle=0.6mm,
+%   breakable,% 
+%   colframe=green!20!black,
+%   colback=green!23!white,% 
+%   coltitle=white,% 
+%   fonttitle={\bfseries \scshape} ,%   
+%   sharp corners,
+%   title={Teorema \thetcbcounter},
+% }
+
+% \newtcolorbox[use counter=definitionCounter]{definicion}[1]{
+%   toptitle=1.6mm,
+% 	colframe=colorC,
+% 	colback=colorC!4!white,
+%   coltitle=white,
+%   rounded corners,
+%   breakable,
+% 	fonttitle=\bfseries,
+% 	% title={Definición \thetcbcounter: #1},
+%   title={\fontfamily{ugq}\selectfont Definición \thetcbcounter: #1}
+% 	% valign=center,width=(\linewidth-3em)
+%   }
+
+% \newtcolorbox[use counter=ejemplo]{ejemplo}[1][]{
+%   toptitle=1.6mm,
+% 	colframe=colorC,
+% 	colback=colorA!4,
+%   coltitle=white,
+%   sharp corners,
+%     breakable,
+% 	title={\grotesk Ejemplo \thetcbcounter},
+% 	fonttitle=\bfseries
+%   }
+
+% \newtcolorbox[use counter=ejercicio]{ejercicio}[1][]{
+% 	colframe=colorE,
+% 	coltext=colorA,
+% 	colback=colorE!4!white,
+% 	title={Ejercicio \thetcbcounter},
+% 	fonttitle=\bfseries
+% }	
+
+
+
+% % mkdir contents && cd contents &&
+% % touch 00-welcome.tex &&
+% % touch 01-presentation.tex &&
+% % touch 02-motivation.tex &&
+% % touch 03-contents.tex &&
+% % touch 04-objetive.tex &&
+% % touch 05-methodology.tex &&
+% % touch 06-evaluation.tex &&
+% % touch 07-biblio.tex &&
+
+
+% % TIKZ STYLES
+%%! -- Nodes
+% 
+\tikzstyle{redLabel} = [align=center,fill=GithubRed!20,inner sep=2.3mm, text=GithubRed]
+\tikzstyle{greenLabel} = [align=center,fill=GithubGreen!20,inner sep=2.3mm, text=GithubGreen]
+\tikzstyle{primaryLabel} = [align=center,fill=colorA!20,inner sep=2.3mm, draw=none,text=colorA]
+\tikzstyle{secondaryLabel} = [align=center,fill=colorD!20,inner sep=2.3mm,text=colorD]
+\tikzstyle{blackLabel} = [text=white,align=center,fill=black,inner sep=2.3mm, draw=white]
+
+\tikzstyle{infonode}=[font=\large,inner sep=10pt,rounded corners=3pt,above right,draw,align=center,fill=colorA!50]
+\tikzstyle{arrownode}=[-Triangle,line width=0.7mm, color=colorA]
+\tikzstyle{arrowRed}=[-Triangle,line width=0.7mm, color=colorD]
+\tikzstyle{arrowOrange}=[-Triangle,line width=0.7mm, color=colorC]
+\tikzstyle{arrowBlue}=[-Triangle,line width=0.7mm, color=blue]
+\tikzstyle{arrowBlack}=[-Triangle,line width=0.7mm, color=black]
+\tikzstyle{arrowGreen}=[-Triangle,line width=0.7mm, color=colorA]
+\tikzstyle{electricField}=[Triangle-,line width=0.6mm, color=colorA, opacity=0.6]
+\tikzstyle{arrowYellow}=[-Triangle,line width=0.7mm, color=myYellow]
+\tikzstyle{arrowSmall}=[-Triangle,line width=0.5mm, color=colorA]
+% 
+\tikzstyle{arrowthin}=[-Triangle,line width=0.5mm, color=colorC]
+\tikzstyle{arrowbet}=[Triangle-Triangle,line width=0.35mm, color=colorC]
+\tikzstyle{arrowFake}=[-Triangle,line width=0.5mm, color=colorC, opacity=0.3]
+% 
+%%! -- Free fall
+\tikzstyle{transition}=[rectangle,draw=black!50,fill=black!20,thick]
+\tikzstyle{wall}=[ultra thick, draw=colorD!60!black, fill=colorD ,pattern=bricks, pattern color=white]
+\tikzstyle{wallfill}=[ultra thick, draw=colorD!60!black, fill=colorD!40]
+\tikzstyle{ballStyle}=[fill=blue, draw=none]
+\tikzstyle{ballFake}=[fill=blue, draw=none, opacity=0.25]
+% ELECTROMAGNETISM
+% 
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centecolorD, draw=black, fill=colorD!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centecolorD, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centecolorD, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centecolorD, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=Triangle]
+
+\tikzstyle{smallLabel} = [align=center,text width=2.85cm,rounded corners,fill=myYellow!60,inner sep=3mm, right]
+\tikzstyle{tinyLabel} = [align=center,text width=2.25cm,rounded corners,fill=colorA!20,draw=colorA,line width=0.5 mm,inner sep=3mm, right,text=colorA]
+\tikzstyle{verySmallLabel} = [align=center,text width=1.5cm,rounded corners,fill=myYellow!30,inner sep=2mm, right]
+\tikzstyle{verySmallLabelB} = [align=center,text width=1.5cm,rounded corners,fill=myDarkPurple!30,inner sep=2mm, right]
+\tikzstyle{mediumLabel} = [align=center,text width=4.25cm,rounded corners,fill=myYellow!60,inner sep=2mm, right]
+\tikzstyle{mediumLabelb} = [align=center,text width=4.25cm,rounded corners,fill=colorA!60,inner sep=2mm, right, text=white]
+\tikzstyle{largeLabel} = [align=center,text width=7.25cm,rounded corners,fill=myYellow!20,inner sep=3mm, right]
+\tikzstyle{purpleLabel} = [align=center,rounded corners,fill=colorA!20,inner sep=1.8mm,draw=colorA]
+\tikzstyle{cyanLabel} = [align=center,rounded corners,fill=cyan!30,inner sep=2.3mm, draw=cyan]
+% 
+\tikzstyle{support} = [pattern = north west lines]
+\tikzstyle{axisArrow} = [dashed,-Triangle, thick, black!30!white]
+\tikzstyle{axisArrow_A} = [-Triangle, thick, blue!80!white]
+\tikzstyle{axisArrow_B} = [-Triangle, thick, colorD!80!white]
+\tikzstyle{labeledTxt} = [right, rotate=0, text width=3.25cm, fill=black, text=white,font=\scriptsize\fontfamily{ugq}\selectfont, inner sep=1mm,rounded corners=0.25cm, align=center]
+
+
+% \tikzset{
+%   bicolor polygon/.pic = {
+%       \node[regular polygon, regular polygon sides=#1,
+%       minimum size=4cm, draw, fill=blue!50,
+%       outer sep=0pt] at (0,0) (-node){};
+%       \foreach \i in {1,2,...,#1}
+%            \draw[fill=blue!25] (-node.corner \i)
+%                --(-node.side \i)--(-node.center)--cycle;
+%   }}
+
+
+
+% \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+% % \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+% \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+% \date{\today}
+% \usetikzlibrary{arrows.meta,positioning}
+
+% %%!  === === === === === ===----------------------
+
+
+
+\colorlet{mygreen}{green!75!black}
+\colorlet{col1in}{red!30}
+\colorlet{col1out}{red!40}
+\colorlet{col2in}{mygreen!40}
+\colorlet{col2out}{mygreen!50}
+\colorlet{col3in}{blue!30}
+\colorlet{col3out}{blue!40}
+\colorlet{col4in}{mygreen!20}
+\colorlet{col4out}{mygreen!30}
+\colorlet{col5in}{blue!10}
+\colorlet{col5out}{blue!20}
+\colorlet{col6in}{blue!20}
+\colorlet{col6out}{blue!30}
+\colorlet{col7out}{orange}
+\colorlet{col7in}{orange!50}
+\colorlet{col8out}{orange!40}
+\colorlet{col8in}{orange!20}
+\colorlet{linecol}{blue!60}

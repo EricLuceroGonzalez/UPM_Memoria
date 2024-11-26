@@ -1,0 +1,98 @@
+\ProvidesPackage{EricLuceroCommands}
+
+% ==========================================
+% MACROS PARA FUNCIONES Y OPERADORES MATEMÁTICOS
+% ==========================================
+
+\newcommand{\fradial}[2]{\phi \left( \norm{x_{#1} - x_{#2}}_2\right) }
+% 'fradial': Define una función radial en función de la norma euclidiana (L2) entre los puntos x_{#1} y x_{#2}.
+% Esta función puede ser útil para representar kernels radiales o funciones de distancia en métodos de interpolación o machine learning (ej., SVM con RBF kernel).
+
+\newcommand{\fradialcent}[2]{\phi \left( \norm{x_{#1}^c - x_{#2}^c}_2,\epsilon\right) }
+% 'fradialcent': Variación de 'fradial', pero con el concepto de centrado (x^c) y un parámetro adicional epsilon (\epsilon), que podría ser un término de regularización o escala.
+% Se utiliza para trabajar con versiones centradas de las coordenadas (quizás transformaciones afines o centradas en media).
+
+\newcommand{\parcial}[2]{\frac{\partial #1}{\partial #2} }
+% 'parcial': Derivada parcial de #1 con respecto a #2.
+% Este es un operador común en cálculo multivariable, útil para documentos que contienen muchas derivadas parciales.
+
+\newcommand{\parciald}[2]{\dfrac{\partial^2 #1}{\partial #2^2} }
+% 'parciald': Segunda derivada parcial de #1 con respecto a #2.
+% Utilizado para cálculos de curvatura o cuando se necesitan segundas derivadas en problemas de optimización.
+
+\newcommand{\Derivate}[2]{\frac{d #1}{d #2} }
+\newcommand{\DerivateS}[2]{\frac{d^{2} #1}{d #2^{2}} }
+\newcommand{\DerivateT}[2]{\frac{d^{3} #1}{d #2^{3}} }
+% 'derid', 'derit', 'deric': Derivadas segunda, tercera y cuarta de #1 con respecto a #2.
+% Esto es útil cuando se necesita analizar la curvatura o la tasa de cambio en niveles más altos de derivación.
+
+\renewcommand{\vector}[1]{\vec{\bm{#1}}}
+% 'vector': Redefinición del comando \vector para usar negrita en los vectores, \bm{#1}, para destacar vectores como objetos matemáticos importantes.
+% El comando \vec mantiene la flecha, pero también agrega el efecto de negrita.
+
+\newcommand{\abso}[1]{\left\lvert #1 \right\rvert}
+% 'abso': Macro para obtener el valor absoluto de #1 con delimitadores bien espaciados (\left y \right).
+% Esto asegura un correcto espaciado y escalado cuando se utiliza en ecuaciones matemáticas.
+
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+% 'norm': Define la norma de un vector o matriz con delimitadores ajustables (\left y \right).
+% Útil para trabajar con magnitudes y longitudes en álgebra lineal.
+
+% ==========================================
+% MACROS PARA DIRECCIONES Y GRADIENTES
+% ==========================================
+
+\newcommand{\ihat}{\boldsymbol{\hat{\imath}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\jmath}}}
+\newcommand{\khat}{\boldsymbol{\hat{\kmath}}}
+% 'ihat', 'jhat', 'khat': Definen los vectores unitarios en las direcciones x, y, z en negrita.
+% Esto es útil cuando se trabaja con geometría 3D o análisis vectorial.
+
+\newcommand{\xhat}{\boldsymbol{\hat{x}}}
+\newcommand{\yhat}{\boldsymbol{\hat{y}}}
+\newcommand{\zhat}{\boldsymbol{\hat{z}}}
+% 'xhat', 'yhat', 'zhat': Vectores unitarios en las direcciones x, y, z con símbolos de negrita.
+% Estas versiones con x, y, z se utilizan más frecuentemente en coordenadas cartesianas.
+
+\newcommand{\gradient}[1]{\dfrac{\partial #1}{\partial x} \boldsymbol{\hat{\imath}} + \dfrac{\partial #1}{\partial y} \boldsymbol{\hat{\jmath}} }
+% 'gradiente': Calcula el gradiente de una función escalar en dos dimensiones (coordenadas x, y).
+% Se usa en contextos de análisis multivariable o ecuaciones diferenciales, para representar la dirección de mayor cambio de una función.
+
+% ==========================================
+% MACROS PARA FUNCIONES DE DISTRIBUCIÓN
+% ==========================================
+
+\newcommand{\distribNormal}[3]{\mathcal{N}\left(#1, #2^2\right) \quad \text{donde } x \sim \mathcal{N}\left(#1, #2^2\right)}
+% 'distribNormal': Define la notación de una variable aleatoria x que sigue una distribución normal con media #1 y desviación estándar #2.
+% Ejemplo: \distribNormal{\mu}{\sigma}
+
+\newcommand{\pdfNormal}[2]{f(x) = \frac{1}{\sqrt{2\pi #2^2}} \exp\left(-\frac{(x - #1)^2}{2#2^2}\right)}
+% 'pdfNormal': Define la función de densidad de probabilidad (PDF) de la distribución normal, con media #1 y desviación estándar #2.
+% Ejemplo: \pdfNormal{\mu}{\sigma}
+\newcommand{\pdfHalfNormal}{f(x) = \frac{2}{\sqrt{2\pi}} \exp\left(-\frac{x^2}{2}\right)}
+% 'pdfNormal': Define la función de densidad de probabilidad (PDF) de la distribución normal, con media #1 y desviación estándar #2.
+% Ejemplo: \pdfNormal{\mu}{\sigma}
+
+\newcommand{\distribBinomial}[3]{\mathcal{B}(#1, #2) \quad \text{donde } X \sim \mathcal{B}(#1, #2)}
+% 'distribBinomial': Define la notación de una variable aleatoria X que sigue una distribución binomial con n = #1 (número de pruebas) y p = #2 (probabilidad de éxito).
+% Ejemplo: \distribBinomial{n}{p}
+
+\newcommand{\pmfBinomial}[3]{P(X = #1) = \binom{#2}{#1} p^{#1} (1-p)^{#2 - #1}}
+% 'pmfBinomial': Define la función de masa de probabilidad (PMF) de la distribución binomial, donde #1 es el número de éxitos, #2 es el número de pruebas y p es la probabilidad de éxito.
+% Ejemplo: \pmfBinomial{k}{n}{p}
+
+\newcommand{\distribPoisson}[1]{X \sim \mathcal{P}(\lambda) \quad \text{donde } X \text{ sigue una distribución de Poisson con } \lambda = #1}
+% 'distribPoisson': Define la notación de una variable aleatoria X que sigue una distribución de Poisson con parámetro #1 (media de eventos por intervalo).
+% Ejemplo: \distribPoisson{\lambda}
+
+\newcommand{\pmfPoisson}[1]{P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!} \quad (k = 0, 1, 2, \ldots)}
+% 'pmfPoisson': Define la función de masa de probabilidad (PMF) de la distribución de Poisson, donde k es el número de eventos observados.
+% Ejemplo: \pmfPoisson{k}
+
+\newcommand{\distribExponencial}[1]{X \sim \mathcal{E}(\lambda) \quad \text{donde } \lambda = #1}
+% 'distribExponencial': Define la notación de una variable aleatoria X que sigue una distribución exponencial con parámetro #1 (tasa de eventos).
+% Ejemplo: \distribExponencial{\lambda}
+
+\newcommand{\pdfExponencial}[1]{f(x) = \lambda e^{-\lambda x} \quad (x \geq 0)}
+% 'pdfExponencial': Define la función de densidad de probabilidad (PDF) de la distribución exponencial, donde #1 es la tasa de eventos.
+% Ejemplo: \pdfExponencial{\lambda}

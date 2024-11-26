@@ -1,0 +1,118 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{Memoir_Style}[October_2024]
+
+% ================================
+%    Estilo Personalizado Memoir
+% ================================
+% Autor: Eric Lucero
+% Ubicación: /Users/my_name/Library/Texmf/
+% Contacto: ericlucerogonzalez@gmail.com
+% Última Revisión: Octubre 2024
+%
+% Descripción: Este paquete define estilos personalizados y configuraciones para 
+% documentos en LaTeX en la clase Memoir, optimizado para la presentación formal en 
+% español. Incluye configuraciones de márgenes, estilo de secciones, encabezados y 
+% pies de página, así como formatos de capítulo y otras personalizaciones reutilizables.
+
+\selectlanguage{spanish} % Selecciona el idioma del documento como español
+\counterwithout{section}{chapter} % Elimina el número de capítulo de las secciones
+\setsecnumdepth{subsection} % Define la profundidad de la numeración en subsecciones
+
+% ================================
+% 1. Márgenes y Espaciado de Página
+% ================================
+
+\setlrmarginsandblock{33mm}{34mm}{*} % Márgenes izquierdo y derecho
+\setulmarginsandblock{28mm}{25mm}{*} % Márgenes superior e inferior
+\setheadfoot{30pt}{25pt} % Altura del encabezado y pie de página
+\setlength{\voffset}{0mm}
+\setlength{\hoffset}{0mm}
+\setlength{\headsep}{45pt} % Espacio entre el encabezado y el cuerpo del texto
+\setlength{\footmarkwidth}{-.1em} % Espacio entre el número de nota y el texto
+\setlength{\footmarksep}{.1em} % Espacio entre varias notas en la misma página
+\setlength{\skip\footins}{1\onelineskip} % Espacio entre el texto y las notas al pie
+\renewcommand*{\footnoterule}{} % Elimina la línea sobre la primera nota al pie
+
+% \setlength{\parskip}{18pt}
+% ================================
+% 2. Encabezado y Pie de Página
+% ================================
+
+\makepagestyle{UPM_memoir} % Define un nuevo estilo de página personalizado
+% Encabezado con título y logo
+\makeoddhead{UPM_memoir}{\normalsize\sffamily\rightmark{\hskip.2cm\vrule\hskip.2cm}}{}{\includegraphics[width=0.20\textwidth]{mancheta_upm.png}}
+\makeevenhead{UPM_memoir}{\normalsize\sffamily\rightmark{\hskip.2cm\vrule\hskip.2cm}}{}{\includegraphics[width=0.20\textwidth]{mancheta_upm.png}}
+
+% Pie de página con título y número de página
+\makeoddfoot{UPM_memoir}{\sffamily\thetitle}{}{\small\thepage\hspace{0.5mm} de \pageref{LastPage}}
+\makeevenfoot{UPM_memoir}{\sffamily\thetitle}{}{\small\thepage\hspace{0.5mm} de \pageref{LastPage}}
+\makeheadrule{UPM_memoir}{\textwidth}{0.3mm} % Línea de encabezado
+\makefootrule{UPM_memoir}{\textwidth}{0.3mm}{0.4mm} % Línea de pie de página
+\pagestyle{UPM_memoir} % Aplica el estilo de página personalizado
+
+% ================================
+% 3. Formato de Partes y Capítulos
+% ================================
+
+% Formato de Título de Parte
+\renewcommand{\partnamefont}{\centering\sffamily\itshape\Huge}
+\renewcommand{\partnumfont}{\sffamily\Huge}
+\renewcommand{\parttitlefont}{\centering\sffamily\scshape}
+\renewcommand{\beforepartskip}{\null\vskip.618\textheight}
+
+% Formato de Título de Capítulo
+\makechapterstyle{Tufte}{
+    \renewcommand{\chapterheadstart}{\null \vskip-1.5\onelineskip}
+    \renewcommand{\printchaptername}{\large\itshape\chaptername}
+    \renewcommand{\printchapternum}{\LARGE\thechapter \\}
+    \renewcommand{\afterchapternum}{}
+    \renewcommand{\printchaptertitle}[1]{\raggedright\bfseries \Huge{##1}}
+    \renewcommand{\afterchaptertitle}{\vskip4.5\onelineskip}
+}
+\chapterstyle{Tufte}
+
+% ================================
+% 4. Estilos de Sección y Subsección
+% ================================
+
+% Estilo de título de sección
+\setsecheadstyle{\sethangfrom{\noindent ##1}\raggedright\sffamily\large}
+\setbeforesecskip{1.5\onelineskip}
+\setaftersecskip{\onelineskip}
+
+% Estilo de título de subsección
+\setsubsecheadstyle{\sethangfrom{\noindent  ##1}\raggedright\sffamily\large\itshape}
+\setbeforesubsecskip{.5\onelineskip}
+\setaftersubsecskip{\onelineskip}
+
+% Estilo de título de subsubsección
+\setsubsubsecheadstyle{\sethangfrom{\noindent ##1}\raggedright\sffamily\itshape}
+\setbeforesubsubsecskip{-.5\onelineskip}
+\setaftersubsubsecskip{.1\onelineskip}
+
+% ================================
+% 5. Formato de Captions
+% ================================
+
+\captiontitlefont{\itshape\footnotesize}
+\captionnamefont{\footnotesize}
+
+% ================================
+% 6. Entornos de Citas y Notas
+% ================================
+
+% Formato para entornos de citas en bloque
+\renewenvironment{quotation}
+{\par\leftskip=1em\vskip.5\onelineskip\em}
+{\par\vskip.5\onelineskip}
+
+\renewenvironment{quote}
+{\list{}{\em\leftmargin=1em}\item[]}{\endlist\relax}
+
+% ================================
+% 7. Configuraciones Generales
+% ================================
+
+\setlength{\parindent}{0em} % Sangría de párrafos
+\midsloppy % Ajusta el espaciado para evitar líneas desbordadas
+\checkandfixthelayout % Aplica las configuraciones de diseño definidas
