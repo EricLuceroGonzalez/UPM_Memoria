@@ -1,7 +1,6 @@
 # 🌟 UPM_Memoria: Documento de LaTeX para trabajos y otros documentos no oficiales
 
 [![Estado del Proyecto](https://img.shields.io/badge/Estado-Finalizado-success)](https://github.com/EricLuceroGonzalez/UPM_Memoria)
-[![Licencia]([https://img.shields.io/github/license/EricLuceroGonzalez/UPM_Memoria?color=blue](https://img.shields.io/badge/Licencia-MIT-blue)](LICENSE)
 
 ## 📝 Descripción del Proyecto
 
@@ -65,4 +64,4 @@ Aunque este es un repositorio de portfolio personal, si encuentras algún error 
 
 ## 📄 Licencia
 
-Este proyecto se distribuye bajo la Licencia **MIT**. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto se distribuye bajo la Licencia **MIT**.
